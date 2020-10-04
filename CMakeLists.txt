@@ -149,7 +149,7 @@ message(STATUS "Finished setting up include directories.")
 #)
 
 
-IF(APPLE)
+
 
 find_library(IIO iio)
 
@@ -164,9 +164,9 @@ endif()
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC
     ${IIO}
+
     )
     
-ENDIF (APPLE)
 
 
 verbose_message("Successfully added all dependencies and linked against them.")
