@@ -44,13 +44,13 @@ option(${PROJECT_NAME}_ENABLE_CPPCHECK "Enable static analysis with Cppcheck." O
 # Code coverage
 #
 
-option(${PROJECT_NAME}_ENABLE_CODE_COVERAGE "Enable code coverage through GCC." OFF)
+option(${PROJECT_NAME}_ENABLE_CODE_COVERAGE "Enable code coverage through GCC." ON)
 
 #
 # Doxygen
 #
 
-option(${PROJECT_NAME}_ENABLE_DOXYGEN "Enable Doxygen documentation builds of source." OFF)
+option(${PROJECT_NAME}_ENABLE_DOXYGEN "Enable Doxygen documentation builds of source." ON)
 
 #
 # Miscelanious options
