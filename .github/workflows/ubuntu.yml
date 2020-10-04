@@ -36,6 +36,15 @@ jobs:
         cmake --build build --config Release
         cmake --build build --target install --config Release
 
+    - name: install Libiio
+      run: |
+        cd ..
+        git clone https://github.com/analogdevicesinc/libiio.git
+        cd libiio
+        cmake ./
+        make all
+        make install
+
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION -DProject_ENABLE_CODE_COVERAGE=1
       

@@ -11,6 +11,7 @@ project(
 
 verbose_message("Adding tests under ${CMAKE_PROJECT_NAME}Tests...")
 
+
 #
 # Set the sources for the unit tests and add the executable(s)
 #
@@ -86,3 +87,5 @@ add_test(
 )
 
 verbose_message("Finished adding unit tests for ${CMAKE_PROJECT_NAME}.")
+
+

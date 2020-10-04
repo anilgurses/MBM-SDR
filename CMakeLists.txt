@@ -148,6 +148,27 @@ message(STATUS "Finished setting up include directories.")
 #    ${PROJECT_NAME}_PROJECT_WARNINGS        
 #)
 
+
+IF(APPLE)
+
+find_library(IIO iio)
+
+if (NOT IIO)
+  message(FATAL_ERROR "IIO not found")
+else()
+  message(STATUS "Looking for IIO - found")
+endif()
+
+
+
+target_link_libraries(${PROJECT_NAME} 
+    PUBLIC
+    ${IIO}
+    )
+    
+ENDIF (APPLE)
+
+
 verbose_message("Successfully added all dependencies and linked against them.")
 
 #
@@ -287,3 +308,5 @@ if(${PROJECT_NAME}_ENABLE_UNIT_TESTING)
 	message(STATUS "Build unit tests for the project. Tests should always be found in the test folder\n")
   add_subdirectory(test)
 endif()
+
+
