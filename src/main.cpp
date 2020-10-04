@@ -4,7 +4,16 @@
 #include <string.h>
 #include <signal.h>
 #include <stdio.h>
-#include <iio/iio.h>
+
+#ifdef __linux__
+    #include <iio.h>
+#elif __APPLE__
+    #include <iio/iio.h>
+#endif
+
+
+
+
 
 using namespace std;
 
@@ -19,7 +28,6 @@ struct stream_cfg {
 	long long lo_hz; // Local oscillator frequency in Hz
 	const char* rfport; // Port name
 };
-
 
 
 
