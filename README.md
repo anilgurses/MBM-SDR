@@ -3,6 +3,8 @@
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Ubuntu/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
 [![codecov](https://codecov.io/gh/anilgurses/MBM-SDR/branch/master/graph/badge.svg)](https://codecov.io/gh/anilgurses/MBM-SDR)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/anilgurses/MBM-SDR)](https://github.com/anilgurses/MBM-SDR/releases)
+[![Documentation Status](https://readthedocs.org/projects/mbm-sdr/badge/?version=latest)](https://mbm-sdr.readthedocs.io/en/latest/?badge=latest)
+
 
 # MBM-SDR
 Description and details will be added soon.
