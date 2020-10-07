@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/07496307e10645eab406a6577be7815e)](https://app.codacy.com/gh/anilgurses/MBM-SDR?utm_source=github.com&utm_medium=referral&utm_content=anilgurses/MBM-SDR&utm_campaign=Badge_Grade)
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/MacOS/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Windows/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Ubuntu/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
