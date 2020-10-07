@@ -1,8 +1,8 @@
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/MacOS/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
 [![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Windows/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
-[![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Ubuntu/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)  
+[![Actions Status](https://github.com/anilgurses/MBM-SDR/workflows/Ubuntu/badge.svg)](https://github.com/anilgurses/MBM-SDR/actions)
 [![codecov](https://codecov.io/gh/anilgurses/MBM-SDR/branch/master/graph/badge.svg)](https://codecov.io/gh/anilgurses/MBM-SDR)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/anilgurses/MBM-SDR)](https://github.com/anilgurses/MBM-SDR/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/anilgurses/MBM-SDR)](https://github.com/anilgurses/MBM-SDR/releases)  
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/07496307e10645eab406a6577be7815e)](https://app.codacy.com/gh/anilgurses/MBM-SDR?utm_source=github.com&utm_medium=referral&utm_content=anilgurses/MBM-SDR&utm_campaign=Badge_Grade)
 [![Documentation Status](https://readthedocs.org/projects/mbm-sdr/badge/?version=latest)](https://mbm-sdr.readthedocs.io/en/latest/?badge=latest)
 
