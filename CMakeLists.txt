@@ -149,8 +149,6 @@ message(STATUS "Finished setting up include directories.")
 #)
 
 
-
-
 find_library(IIO iio)
 
 if (NOT IIO)
@@ -163,9 +161,8 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC
-    ${IIO}
-
-    )
+    ${IIO}     
+)
     
 
 
