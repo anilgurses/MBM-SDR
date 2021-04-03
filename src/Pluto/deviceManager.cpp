@@ -27,22 +27,29 @@
 #include <signal.h>
 #include <stdio.h>
 #include "mbm-sdr/deviceManager.h"
+#include "spdlog/spdlog.h"
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-   #ifdef _WIN64
-      //Windows (64-bit only)
-   #else
-      //Windows (32-bit only)
-   #endif
-#elif __linux__
-    #include <iio.h>
-#elif __APPLE__
-    #include <iio/iio.h>
-#endif
 
-using namespace std;
+/* helper macros */
+#define MHZ(x) ((long long)(x*1000000.0 + .5))
+#define GHZ(x) ((long long)(x*1000000000.0 + .5))
 
-deviceManager::deviceManager() {
+/* common RX and TX streaming params */
+struct stream_cfg {
+	long long bw_hz; // Analog banwidth in Hz
+	long long fs_hz; // Baseband sample rate in Hz
+	long long lo_hz; // Local oscillator frequency in Hz
+	const char* rfport; // Port name
+};
+
+#define IIO_ENSURE(expr) { \
+	if (!(expr)) { \
+		(void) spdlog::error( "assertion failed ({}:{})\n", __FILE__, __LINE__); \
+		(void) abort(); \
+	} \
+}
+
+deviceManager::deviceManager() : ctx(iio_create_default_context()) {
     m_deviceCount = 0;
 }
 
@@ -60,5 +67,34 @@ bool deviceManager::isExist() {
 ssize_t deviceManager::getDeviceCount() {
     return m_deviceCount;
 }
+
+/* finds AD9361 streaming IIO devices */
+bool deviceManager::get_ad9361_stream_dev(struct iio_context *ctx, int d, struct iio_device **dev)
+{
+	switch (d) {
+	case 0: *dev = iio_context_find_device(ctx, "cf-ad9361-dds-core-lpc"); return *dev != NULL;
+	case 1: *dev = iio_context_find_device(ctx, "cf-ad9361-lpc");  return *dev != NULL;
+	default: IIO_ENSURE(0); return false;
+	}
+}
+
+
+void deviceManager::shutdown()
+{
+	spdlog::info("* Destroying buffers");
+	// if (rxbuf) { iio_buffer_destroy(rxbuf); }
+	// if (txbuf) { iio_buffer_destroy(txbuf); }
+
+	// spdlog::info("* Disabling streaming channels");
+	// if (rx0_i) { iio_channel_disable(rx0_i); }
+	// if (rx0_q) { iio_channel_disable(rx0_q); }
+	// if (tx0_i) { iio_channel_disable(tx0_i); }
+	// if (tx0_q) { iio_channel_disable(tx0_q); }
+
+	// spdlog::info("* Destroying context");
+	// if (ctx) { iio_context_destroy(ctx); }
+}
+
+
 
 

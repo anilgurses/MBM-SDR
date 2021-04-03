@@ -1,14 +1,15 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.16.0)
 
 # Author Anıl Gürses
-
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+# Find includes in the build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Turn on automatic invocation of the MOC, UIC & RCC
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 
 project(
@@ -153,9 +154,8 @@ message(STATUS "Finished setting up include directories.")
 #    ${PROJECT_NAME}_PROJECT_WARNINGS        
 #)
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
-
 find_library(IIO iio)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
 if (NOT IIO)
   message(FATAL_ERROR "IIO not found")
@@ -168,9 +168,11 @@ endif()
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC
     ${IIO}
+    PRIVATE
     Qt6::Widgets
+    Qt6::Core
+    Qt6::Gui
 )
-    
 
 
 verbose_message("Successfully added all dependencies and linked against them.")

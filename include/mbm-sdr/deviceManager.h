@@ -26,17 +26,46 @@
 #ifndef DEVICEMANAGER_H
 #define DEVICEMANAGER_H
 
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+   #ifdef _WIN64
+      //Windows (64-bit only)
+   #else
+      //Windows (32-bit only)
+   #endif
+#elif __linux__
+    #include <iio.h>
+#elif __APPLE__
+    #include <iio/iio.h>
+#endif
+
+
+
 class deviceManager {
+
+enum iodev { RX, TX };
 
 public:
     deviceManager();
     bool isExist();
     ssize_t getDeviceCount();
 
+    static bool get_ad9361_stream_dev(struct iio_context *ctx, int d, struct iio_device **dev);
+
+    static void shutdown();
+
 
 private:
     ssize_t m_deviceCount;
 
+    /* IIO structs required for streaming */
+    struct iio_context *ctx;
+    struct iio_channel *rx0_i;
+    struct iio_channel *rx0_q;
+    struct iio_channel *tx0_i;
+    struct iio_channel *tx0_q;
+    struct iio_buffer  *rxbuf;
+    struct iio_buffer  *txbuf;
 };
 
 
