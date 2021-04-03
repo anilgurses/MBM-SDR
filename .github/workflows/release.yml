@@ -18,14 +18,6 @@ jobs:
       matrix:
         config:
         - {
-            name: "Windows Latest MSVC",
-            artifact_ext: '.zip',
-            os: windows-latest,
-            cc: "cl",
-            cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-          }
-        - {
             name: "Ubuntu Latest GCC",
             artifact_ext: '.tar.gz',
             os: ubuntu-latest,
@@ -156,21 +148,6 @@ jobs:
         asset_name: "${{ env.PROJECT_NAME }}-Linux-${{ steps.version.outputs.name }}.tar.gz"
         asset_content_type: application/x-tar
 
-    - name: download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: "Windows-${{ steps.version.outputs.name }}"
-        path: ./
-
-    - name: upload windows release asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: "artifact.zip"
-        asset_name: "${{ env.PROJECT_NAME }}-Windows-${{ steps.version.outputs.name }}.zip"
-        asset_content_type: application/zip
 
     - name: download artifact
       uses: actions/download-artifact@v2
