@@ -68,6 +68,31 @@ jobs:
         cmake --build build --target install --config Release
         cd ../MBM-SDR
 
+    
+    - name: install Libiio
+      run: |
+        cd ..
+        git clone https://github.com/analogdevicesinc/libiio.git
+        cd libiio
+        cmake ./
+        make all
+        sudo make install
+        cd ../MBM-SDR
+    
+    - name: Cache Qt
+      id: cache-qt
+      uses: actions/cache@v1
+      with:
+        path: ../Qt
+        key: ${{ runner.os }}-QtCache
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '6.0.3'
+        cached: ${{ steps.cache-qt.outputs.cache-hit }}
+
+
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/.local"
       
