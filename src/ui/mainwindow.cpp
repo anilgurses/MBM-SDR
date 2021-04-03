@@ -1,6 +1,7 @@
 #include "ui/mainwindow.h"
 #include "../uiDesign/ui_mainwindow.h"
 #include "spdlog/spdlog.h"
+#include <vector>
 
 #include "mbm-sdr/definitions.h"
 

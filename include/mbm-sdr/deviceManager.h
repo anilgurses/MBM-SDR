@@ -38,7 +38,7 @@
 #elif __APPLE__
     #include <iio/iio.h>
 #endif
-
+#include <vector>
 
 
 class deviceManager {
