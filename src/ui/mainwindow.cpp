@@ -42,6 +42,12 @@ MainWindow::MainWindow(QWidget *parent)
         spdlog::error("Device type configuration wrong. It must be tx or rx");
     }
 
+    dManager.getDeviceList(dList);
+    ui->comboBox->addItem("Not Selected");
+    for(auto& d: dList) {
+        ui->comboBox->addItem(QString::fromStdString(d));
+    }
+ 
 }
 
 MainWindow::~MainWindow()
@@ -49,24 +55,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_refreshDeviceBtn_clicked()
-{
-    struct iio_context *ctx;
-    ctx = iio_create_default_context();
-    iio_context_get_devices_count(ctx);
-
-    struct iio_device *tx;
-
-    dManager.get_ad9361_stream_dev(ctx, 0, &tx);
-    spdlog::info("Device refreshed");
-    
-}
 
 void MainWindow::on_releaseDevice_clicked()
 {
     
 }
 
+void MainWindow::on_getDeviceBtn_clicked()
+{
+    struct iio_context *ctx;
 
+    int dvInd = ui->comboBox->currentIndex() - 1;
+    if(dvInd < 0) {
+        spdlog::error("Device is not selected");
+    }
+
+    ctx = iio_create_context_from_uri(&dList[dvInd][0]);
+
+    if (!ctx) {
+		spdlog::error("Unable to create IIO context");
+		return;
+	}
+
+    struct iio_device *tx;
+
+    bool res = dManager.get_ad9361_stream_dev(ctx, 0, &tx);
+    if(res) {
+        ui->deviceGet->setText("Device retrieved");
+        ui->releaseDevice->setEnabled(true);
+        ui->getDeviceBtn->setEnabled(false);
+    }
+}
 
 

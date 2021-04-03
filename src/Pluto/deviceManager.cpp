@@ -49,19 +49,30 @@ struct stream_cfg {
 	} \
 }
 
-deviceManager::deviceManager() : ctx(iio_create_default_context()) {
+deviceManager::deviceManager() {
     m_deviceCount = 0;
 }
 
 bool deviceManager::isExist() {
     iio_scan_context *scn = iio_create_scan_context(NULL, 0);
-    struct iio_context_info** lst;
     m_deviceCount = iio_scan_context_get_info_list(scn, &lst);
     if(m_deviceCount > 0 ){
         return true;
     }else{
         return false;
     }
+}
+
+void deviceManager::getDeviceList(std::vector<std::string>& dList) {
+
+    dList.clear();
+    iio_scan_context *scn = iio_create_scan_context(NULL, 0);
+    iio_scan_context_get_info_list(scn, &lst);
+
+    for(ssize_t i = 0; i < m_deviceCount; i++) {
+        dList.push_back(iio_context_info_get_uri(lst[i]));
+    }
+
 }
 
 ssize_t deviceManager::getDeviceCount() {
@@ -74,7 +85,7 @@ bool deviceManager::get_ad9361_stream_dev(struct iio_context *ctx, int d, struct
 	switch (d) {
 	case 0: *dev = iio_context_find_device(ctx, "cf-ad9361-dds-core-lpc"); return *dev != NULL;
 	case 1: *dev = iio_context_find_device(ctx, "cf-ad9361-lpc");  return *dev != NULL;
-	default: IIO_ENSURE(0); return false;
+	default: return false;
 	}
 }
 

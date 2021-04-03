@@ -50,6 +50,8 @@ public:
     bool isExist();
     ssize_t getDeviceCount();
 
+    void getDeviceList(std::vector<std::string>& dList);
+
     static bool get_ad9361_stream_dev(struct iio_context *ctx, int d, struct iio_device **dev);
 
     static void shutdown();
@@ -66,6 +68,7 @@ private:
     struct iio_channel *tx0_q;
     struct iio_buffer  *rxbuf;
     struct iio_buffer  *txbuf;
+    struct iio_context_info** lst;
 };
 
 

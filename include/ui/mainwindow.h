@@ -33,9 +33,10 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_refreshDeviceBtn_clicked();
     
     void on_releaseDevice_clicked();
+
+    void on_getDeviceBtn_clicked();
     
 
 private:
@@ -44,6 +45,7 @@ private:
     deviceManager dManager;
     configReader cReader;
 
+    std::vector<std::string> dList;
 
 };
 
