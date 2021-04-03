@@ -2,9 +2,15 @@ cmake_minimum_required(VERSION 3.15)
 
 # Author Anıl Gürses
 
-#
-# Project details
-#
+
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+
 
 project(
   "MBM-SDR"
@@ -148,6 +154,7 @@ message(STATUS "Finished setting up include directories.")
 #    ${PROJECT_NAME}_PROJECT_WARNINGS        
 #)
 
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 find_library(IIO iio)
 
@@ -161,7 +168,8 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC
-    ${IIO}     
+    ${IIO}
+    Qt5::Widgets
 )
     
 

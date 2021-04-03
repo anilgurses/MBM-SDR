@@ -45,6 +45,19 @@ jobs:
         cmake ./
         make all
         sudo make install
+    
+    - name: Cache Qt
+      id: cache-qt
+      uses: actions/cache@v1
+      with:
+        path: ../Qt
+        key: ${{ runner.os }}-QtCache
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '6.0.3'
+        cached: ${{ steps.cache-qt.outputs.cache-hit }}
 
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION
