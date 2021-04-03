@@ -44,6 +44,7 @@ jobs:
         cmake ./
         make all
         sudo make install
+        cd ../MBM-SDR
 
     - name: Cache Qt
       id: cache-qt
