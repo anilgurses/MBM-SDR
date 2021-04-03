@@ -154,7 +154,7 @@ message(STATUS "Finished setting up include directories.")
 #    ${PROJECT_NAME}_PROJECT_WARNINGS        
 #)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
 find_library(IIO iio)
 
@@ -169,7 +169,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC
     ${IIO}
-    Qt5::Widgets
+    Qt6::Widgets
 )
     
 
